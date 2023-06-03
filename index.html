@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BOTÃO</title>
+</head>
+
+<body>
+    <!--Cria o campo A com o texto que dever ser copiado-->
+    <label>Campo A</label>
+    <textarea name="campo_a" class="campo_a" cols="100" rows="5"></textarea><br><br>
+    <!--Botão copiar-->
+    <button type="button" class="copiar">COPIAR</button><br><br>
+    <!--Cria o campo B com o texto que dever ser copiado-->
+
+    <label>Campo B</label>
+    <textarea name="campo_b" class="campo_b" cols="100" rows="5"></textarea><br><br>
+    <!--Botão copiar-->
+    <button type="button" class="colar">COLAR</button><br><br>
+    <script>
+        //Recebe os seletores do html com javaScript
+        const btnCopiar = document.querySelector('.copiar');
+        const textareaCampaA = document.querySelector('.campo_a');
+        //Aguardar o click do usuário do botão copiar
+        //aguardo um evento, o evento do clique, quando o usuário clicar executa uma função (e) ultilizando arrow function, que é uma função
+        btnCopiar.addEventListener('click', (e) => {
+            //A propriedade cliboard grava a string de texto especificada na área de transferência do sistema,
+            navigator.clipboard.writeText(textareaCampaA.value)
+        })
+
+        /*Pode fazer assim também...
+        btnCopiar.addEventListener('click',
+            
+           function e(){navigator.clipboard.writeText(textareaCampaA.value);}
+            
+        )*/
+
+        //campo B
+        const btnColar = document.querySelector('.colar');
+        const textareaCampaB = document.querySelector('.campo_b');
+
+        // Aguardar o click do usuário no botao colcar.
+        btnColar.addEventListener('click',async (e)=>{
+            //utilzado o readtext para ler o conteúdo
+            const resposta = await navigator.clipboard.readText();
+            //Enviar o texto para o campo B.
+            textareaCampaB.value = resposta
+        })
+
+    </script>
+</body>
+
+</html>
